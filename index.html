@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Saniya 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', cursive;
+}
+
+body {
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+  min-height: 100vh;
+  color: #fff;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Floating hearts & sparkles */
+.hearts, .sparkles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heart, .sparkle {
+  position: absolute;
+  animation: floatUp linear infinite;
+  opacity: 0.8;
+}
+
+.heart {
+  color: #ff4b5c;
+  font-size: 20px;
+}
+
+.sparkle {
+  color: #fff;
+  font-size: 10px;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-10vh);
+    opacity: 1;
+  }
+}
+
+section {
+  min-height: 100vh;
+  padding: 60px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  position: relative;
+}
+
+h1, h2 {
+  margin-bottom: 15px;
+}
+
+p {
+  max-width: 90%;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+button {
+  margin: 12px;
+  padding: 14px 32px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background: #ff4b5c;
+  color: white;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+.hidden {
+  display: none;
+}
+
+.big-heart {
+  font-size: 80px;
+  animation: beat 1.4s infinite;
+}
+
+@keyframes beat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+footer {
+  padding: 15px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 💖 Floating Hearts -->
+<div class="hearts"></div>
+<div class="sparkles"></div>
+
+<!-- 🎶 Background Music -->
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- SECTION 1 -->
+<section id="s1">
+  <div class="big-heart">❤️</div>
+  <h1>Saniya 💖</h1>
+  <h2>Do you love me? 🥺</h2>
+  <button onclick="firstNo()">NO 😒</button>
+  <button onclick="goTo('s2')">YES ❤️</button>
+</section>
+
+<!-- SECTION 2 -->
+<section id="s2" class="hidden">
+  <h1>Think once again 😌</h1>
+  <p>Are you really really sure?</p>
+  <button onclick="secondNo()">NO 🙄</button>
+  <button onclick="goTo('s3')">YES 💕</button>
+</section>
+
+<!-- SECTION 3 -->
+<section id="s3" class="hidden">
+  <h1>I knew it 😘</h1>
+  <p>
+    I was knowing ki you love me soooo much ❤️  
+    My cute girl 😍
+  </p>
+  <button onclick="goTo('s4')">See Our Memories 💞</button>
+</section>
+
+<!-- SECTION 4 -->
+<section id="s4" class="hidden">
+  <h1>Our Love 💗</h1>
+  <p>Every moment with you is my favorite.</p>
+
+  <div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+  </div>
+
+  <button onclick="goTo('s5')">One Last Question 💍</button>
+</section>
+
+<!-- SECTION 5 -->
+<section id="s5" class="hidden">
+  <div class="big-heart">💍</div>
+  <h1>Saniya, will you always be mine? 💖</h1>
+  <p>
+    Forever means you and me.  
+    No matter what ❤️
+  </p>
+</section>
+
+<footer>
+  Made with infinite love 💕
+</footer>
+
+<script>
+function goTo(id) {
+  document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function firstNo() {
+  alert("Think once again 😏");
+  goTo('s2');
+}
+
+function secondNo() {
+  alert("No option removed 😌 Only YES left ❤️");
+  document.querySelector("#s2 button:first-of-type").style.display = "none";
+}
+
+/* Floating hearts & sparkles generator */
+function createFloating(symbol, className, count) {
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement("div");
+    el.className = className;
+    el.innerHTML = symbol;
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.animationDuration = (5 + Math.random() * 5) + "s";
+    el.style.fontSize = (10 + Math.random() * 20) + "px";
+    document.querySelector("." + (className.includes("heart") ? "hearts" : "sparkles")).appendChild(el);
+  }
+}
+
+createFloating("❤️", "heart", 25);
+createFloating("✨", "sparkle", 20);
+</script>
+
+</body>
+</html>
